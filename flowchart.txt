@@ -1,0 +1,72 @@
+
+In a Node.js application, the order of execution of these files typically follows a structured flow. Here’s how it usually works:
+
+config.env:
+--------------
+
+This file contains environment variables that are loaded at the start of the application using packages like dotenv.
+
+It is often loaded first to ensure all configuration settings are available throughout the application.
+
+server.js:
+-------------
+
+This file is the entry point of your Node.js application.
+
+It initializes the server and requires other modules like app.js.
+
+It sets up the server to listen on a specified port.
+
+app.js:
+-------
+
+This file sets up the Express application.
+
+It includes middleware, routes, and other configurations.
+
+It doesn’t start the server; it’s more about configuring the application.
+
+router.js:
+---------
+
+This file defines the routes and associates them with controller functions.
+
+It is required in app.js to mount the routes on the Express application.
+
+controller.js:
+--------------
+
+This file contains the functions that handle the requests for each route.
+
+It is required by router.js to link the route endpoints with the appropriate logic.
+
+Execution Flow
+--------------
+Initialization:
+---------------
+
+The process starts by running server.js.
+
+Loading Configuration:
+---------------------
+
+server.js may load the config.env file using dotenv.config() if environment variables are needed.
+
+Setup Express Application:
+---------------------------
+
+server.js requires app.js, which sets up the Express application.
+
+Mount Routes:
+--------------
+
+app.js requires router.js to define the routes.
+
+router.js requires controller.js to associate route handlers with the routes.
+
+Start Server:
+------------
+
+Finally, server.js starts the server and listens on the specified port.
+
+Here's an illustrative flow:
